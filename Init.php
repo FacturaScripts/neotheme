@@ -1,22 +1,26 @@
 <?php
 /**
- * Copyright (C) 2020-2021 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Copyright (C) 2020-2025 Carlos Garcia Gomez <carlos@facturascripts.com>
  */
 
 namespace FacturaScripts\Plugins\NeoTheme;
 
-use FacturaScripts\Core\Base\InitClass;
+use FacturaScripts\Core\Template\InitClass;
 
-class Init extends InitClass
+final class Init extends InitClass
 {
-    public function init()
+    public function init(): void
     {
-        // se ejecutara cada vez que carga FacturaScripts (si este plugin está activado).
+        // se ejecutará cada vez que carga FacturaScripts (si este plugin está activado).
         $this->loadExtension(new Extension\Model\User());
     }
 
-    public function update()
+    public function uninstall(): void
     {
-        // se ejecutara cada vez que se instala o actualiza el plugin.
+    }
+
+    public function update(): void
+    {
+        // se ejecutará cada vez que se instala o actualiza el plugin.
     }
 }
