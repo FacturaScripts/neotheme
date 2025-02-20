@@ -1,7 +1,9 @@
+{% import 'Macro/GoogleTagManager.html.twig' as GoogleTagManager %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ constant('FS_LANG') | slice(0, 2) }}"
       xml:lang="{{ constant('FS_LANG') | slice(0, 2) }}">
 <head>
+    {{ GoogleTagManager.head() }}
     {% for item in getIncludeViews('MenuTemplate', 'HeadFirst') %}
         {% include item['path'] %}
     {% endfor %}
@@ -57,13 +59,16 @@
     {% for item in getIncludeViews('MenuTemplate', 'JsHeadAfter') %}
         {% include item['path'] %}
     {% endfor %}
-    {{ debugBarRender.renderHead() | raw }}
+    {% if debugBarRender %}
+        {{ debugBarRender.renderHead() | raw }}
+    {% endif %}
     {% for item in getIncludeViews('MenuTemplate', 'HeadEnd') %}
         {% include item['path'] %}
     {% endfor %}
 </head>
 {% block fullBody %}
     <body>
+    {{ GoogleTagManager.body() }}
     {% for item in getIncludeViews('MenuTemplate', 'BodyFirst') %}
         {% include item['path'] %}
     {% endfor %}
@@ -188,7 +193,9 @@
     <br/>
     <br/>
     <br/>
-    {{ debugBarRender.render() | raw }}
+    {% if debugBarRender %}
+        {{ debugBarRender.render() | raw }}
+    {% endif %}
     {% for item in getIncludeViews('MenuTemplate', 'BodyEnd') %}
         {% include item['path'] %}
     {% endfor %}
