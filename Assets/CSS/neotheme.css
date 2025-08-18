@@ -111,12 +111,9 @@
     position: relative;
 }
 
+/* Desactivar los ::after (flechita flotante) */
 #sidebar .dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    display: none;
 }
 
 #sidebar-overlay {
