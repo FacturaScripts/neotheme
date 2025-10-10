@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}?v=6"/>
         <link rel="stylesheet" href="{{ asset('node_modules/jquery-ui-dist/jquery-ui.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('Dinamic/Assets/CSS/custom.css') }}?v=7"/>
-        <link rel="stylesheet" href="{{ asset('Dinamic/Assets/CSS/neotheme.css') }}?v=2"/>
+        <link rel="stylesheet" href="{{ asset('Dinamic/Assets/CSS/neotheme.css') }}?v=6"/>
     {% endblock %}
     {# Adds custom CSS assets #}
     {% for css in assetManager.get('css') %}
@@ -83,8 +83,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="query" placeholder="{{ trans('search') }}"/>
                         <button type="submit" class="btn">
-                                <i class="fa-solid fa-search" aria-hidden="true"></i>
-                            </button>
+                            <i class="fa-solid fa-search" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -101,17 +101,26 @@
                 {% block navbarContent %}
                     {% set pageData = fsc.getPageData() %}
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" title="{{ trans('menu') }}">
+                        <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showNeoSidebar();">
-                                <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+                                <i class="fa-solid fa-bars me-1" aria-hidden="true"></i>
                                 <span class="d-none d-lg-inline-block">
                                     {{ pageData.menu is empty ? fsc.empresa.nombrecorto : trans(pageData.menu) }}
                                 </span>
+                                <i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i>
                             </a>
                         </li>
-                        <li class="nav-item active" title="{{ trans('menu') }}">
+                        {% if pageData.submenu %}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" onclick="showNeoSidebar();">
+                                    {{ trans(pageData.submenu) }}
+                                    <i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item active">
                             <a class="nav-link" href="#" onclick="showNeoSidebar();">
-                                <i class="fa-solid fa-chevron-right fa-fw" aria-hidden="true"></i> {{ fsc.title }}
+                                {{ fsc.title }}
                             </a>
                         </li>
                     </ul>
@@ -152,7 +161,8 @@
                                 {% include item['path'] %}
                             {% endfor %}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ asset('login') }}?action=logout&multireqtoken={{ formToken(false) }}">
+                            <a class="dropdown-item"
+                               href="{{ asset('login') }}?action=logout&multireqtoken={{ formToken(false) }}">
                                 <i class="fa-solid fa-door-open fa-fw me-1" aria-hidden="true"></i>
                                 {{ trans('logout') }}
                             </a>
