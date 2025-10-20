@@ -103,18 +103,18 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="showNeoSidebar();">
-                                <i class="fa-solid fa-bars me-1" aria-hidden="true"></i>
+                                <i class="fa-solid fa-indent me-1" aria-hidden="true"></i>
                                 <span class="d-none d-lg-inline-block">
                                     {{ pageData.menu is empty ? fsc.empresa.nombrecorto : trans(pageData.menu) }}
                                 </span>
-                                <i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i>
+                                <i class="fa-solid fa-angle-right text-dark ms-2" aria-hidden="true"></i>
                             </a>
                         </li>
                         {% if pageData.submenu %}
                             <li class="nav-item active">
                                 <a class="nav-link" href="#" onclick="showNeoSidebar();">
                                     {{ trans(pageData.submenu) }}
-                                    <i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-angle-right text-dark ms-2" aria-hidden="true"></i>
                                 </a>
                             </li>
                         {% endif %}
